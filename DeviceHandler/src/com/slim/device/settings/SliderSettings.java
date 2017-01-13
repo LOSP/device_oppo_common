@@ -34,6 +34,7 @@ public class SliderSettings extends PreferenceActivity
     private ListPreference mSliderTop;
     private ListPreference mSliderMiddle;
     private ListPreference mSliderBottom;
+    private SwitchPreference mSRGBMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,9 @@ public class SliderSettings extends PreferenceActivity
 
         mSliderSwap = (SwitchPreference) findPreference("button_swap");
         mSliderSwap.setOnPreferenceChangeListener(this);
+
+        mSRGBMode = (SwitchPreference) findPreference("srgb_mode");
+        mSRGBMode.setOnPreferenceChangeListener(this);
 
         mSliderTop = (ListPreference) findPreference("keycode_top_position");
         mSliderTop.setOnPreferenceChangeListener(this);
@@ -73,6 +77,9 @@ public class SliderSettings extends PreferenceActivity
         } else if (preference == mSliderSwap) {
             Boolean value = (Boolean) newValue;
             FileUtils.writeLine(KernelControl.SLIDER_SWAP_NODE, value ? "1" : "0");
+            return true;
+        } else if (preference == mSRGBMode) {
+            KernelControl.enableSRGB((Boolean) newValue);
             return true;
         } else {
             return false;

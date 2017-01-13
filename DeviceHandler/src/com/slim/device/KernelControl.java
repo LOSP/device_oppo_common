@@ -16,9 +16,11 @@
 
 package com.slim.device;
 
+import android.os.SystemProperties;
 import com.slim.device.util.FileUtils;
 
 import java.io.File;
+import java.io.IOException;
 
 /*
  * Very ugly class which enables or disables for now
@@ -39,6 +41,7 @@ public final class KernelControl {
 
     // Notification slider
     public static final String SLIDER_SWAP_NODE = "/proc/s1302/key_rep";
+    public static final String SRGB_MODE = "/sys/class/graphics/fb0/srgb";
     public static final String KEYCODE_SLIDER_TOP = "/proc/tri-state-key/keyCode_top";
     public static final String KEYCODE_SLIDER_MIDDLE = "/proc/tri-state-key/keyCode_middle";
     public static final String KEYCODE_SLIDER_BOTTOM = "/proc/tri-state-key/keyCode_bottom";
@@ -61,6 +64,16 @@ public final class KernelControl {
             if (new File(GESTURE_CONTROL_NODES[i]).exists()) {
                 FileUtils.writeLine(GESTURE_CONTROL_NODES[i], enable ? "1" : "0");
             }
+        }
+    }
+
+    /**
+     * Enable or disable sRGB mode
+     * And write to persistent storage
+     */
+    public static void enableSRGB(boolean enable) {
+        if (new File(SRGB_MODE).exists()) {
+            SystemProperties.set("persist.display.srgb", enable ? "1" : "0");
         }
     }
 

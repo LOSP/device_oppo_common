@@ -54,4 +54,7 @@
     <string name="button_swap_title">调转实体按钮</string>
     <string name="button_swap_summary">调换「最近任务」与「返回」按钮的顺序</string>
 
+    <string name="srgb_mode_title">sRGB 模式</string>
+    <string name="srgb_mode_summary">使用 sRGB 色彩空间</string>
+
 </resources>
