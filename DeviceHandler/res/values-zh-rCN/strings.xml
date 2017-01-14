@@ -38,6 +38,7 @@
     <string name="gesture_double_tap_title">双击屏幕</string>
 
      <!-- Notification slider -->
+    <string name="oneplus_settings">一加设置</string>
     <string name="notification_slider">三段式开关</string>
     <string name="action">行为</string>
 
